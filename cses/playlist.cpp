@@ -11,25 +11,14 @@ int main(){
 
     int n;
     cin>>n;
-    map<int,vector<int>> mp{};
-    int c;
-    for(int i =0;i<n;i++){
+    map<int,int> mp;
+    int c,last{},best{};
+    for(int i=1;i<=n;i++){
         cin>>c;
-        if(mp.contains(c)){
-            mp[c].push_back(i);
-        }else{
-            mp[c].push_back(-1);
-        }
+        
+        last = max(last, mp[c]);
+        best = max(best, i-last);
+        mp[c] = i;
     }
-    int mx{n};
-    for(auto& [x,v]:mp){
-        v.push_back(n);
-        int bs{},c{};
-        for(int i = 1;i<v.size()-1;i++){
-            c = v[i+1] - v[i-1]-1;
-            bs = max(bs,c);
-        }
-        mx = min(mx,bs);
-    }
-    cout<<mx<<'\n';
+    cout<<best<<'\n';
 }

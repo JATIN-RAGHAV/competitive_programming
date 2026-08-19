@@ -15,4 +15,14 @@ int main(){
     for(int&x:a)cin>>x;
 
     sort(a.begin(),a.end());
+
+    long long c{1};
+    for(int i=0;i<n;i++){
+        if(a[i] <= c){
+            c+=a[i];
+        }else{
+            break;
+        }
+    }
+    cout<<c<<'\n';
 }
